@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	    <title>SHOP WITH ME - Contact</title>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" type="text/css" href="../css/style.css">
+	    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>    
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	    <script type="text/javascript" src="../js/javascript.js"></script>
+	    <script>
+	        jQuery(document).ready(function( $ ) {
+	            $('.counter').counterUp({
+	                delay: 10,
+	                time: 1000
+	            });
+	            
+	            //Add or append the shopping cart icon to all products using jQuery
+	            jQuery(".item_info").append('<i class="fa fa-cart-plus" aria-hidden="true"></i>');
+	            
+	            //Hide the answers in the Frequently asked questions page.
+	            jQuery(".faqs_answers").hide();
+	            
+	            //Active the questions to be able to toggle the answers into view.
+	            jQuery(".faqs_questions").click(function() {
+	               jQuery(this).next(".faqs_answers").slideToggle(); 
+	            });
+	        });
+	    </script>
+	    
+	    <script type="text/javascript">
+	        
+	        var TxtType = function(el, toRotate, period) {
+	            this.toRotate = toRotate;
+	            this.el = el;
+	            this.loopNum = 0;
+	            this.period = parseInt(period, 10) || 2000;
+	            this.txt = '';
+	            this.tick();
+	            this.isDeleting = false;
+	        };
+
+	    TxtType.prototype.tick = function() {
+	        var i = this.loopNum % this.toRotate.length;
+	        var fullTxt = this.toRotate[i];
+
+	        if (this.isDeleting) {
+	            this.txt = fullTxt.substring(0, this.txt.length - 1);
+	        } 
+	        
+	        else {
+	            this.txt = fullTxt.substring(0, this.txt.length + 1);
+	        }
+
+	        this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+	        var that = this;
+	        var delta = 200 - Math.random() * 100;
+
+	        if (this.isDeleting) { delta /= 2; }
+
+	        if (!this.isDeleting && this.txt === fullTxt) {
+	            delta = this.period;
+	            this.isDeleting = true;
+	        }
+	        
+	        else if (this.isDeleting && this.txt === '') {
+	            this.isDeleting = false;
+	            this.loopNum++;
+	            delta = 500;
+	        }
+
+	        setTimeout(function() {
+	            that.tick();
+	        }, delta);
+	    };
+
+	    window.onload = function() {
+	        var elements = document.getElementsByClassName('typewrite');
+	        for (var i=0; i<elements.length; i++) {
+	            var toRotate = elements[i].getAttribute('data-type');
+	            var period = elements[i].getAttribute('data-period');
+	            if (toRotate) {
+	              new TxtType(elements[i], JSON.parse(toRotate), period);
+	            }
+	        }
+	        
+	        // INJECT CSS
+	        var css = document.createElement("style");
+	        css.type = "text/css";
+	        css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+	        document.body.appendChild(css);
+	    };
+	    </script>
+	</head>
+
+	<body>
+		
+		<header class="group">
+		    
+		    <a href="../../index.html" id="logo">shop with me</a>
+
+		    <div class="main_links">
+		        
+		    	<nav>
+		    		<ul>
+		    			<li><a href="products.html">Products</a></li>
+		    			<li><a href="about.html">About</a></li>
+		    			<li><a href="#" class="active_item">Contact</a></li>
+		    		</ul>
+		    	</nav>
+		        
+		        <div class="sign_up_log_in">
+				    <a href="sign_links/sign_in.html" class="sign_links">Sign In</a> / 
+				    <a href="sign_links/sign_up.html" class="sign_links">Sign Up</a>
+				</div>
+		        
+		        <a href="cart.html" id="cart">
+		            <i class="fa fa-shopping-cart" style="font-size: 15px"><span class="total">0</span></i>
+		        </a>
+		    </div>
+		</header>
+
+		<main class="group">
+			<section>
+
+				<form action="" method="post" class="contact_form">
+
+					<h2 class="title">How can we be of help?</h2>
+
+					<input type="text" name="first_name" placeholder="first name" class="contact_fields" required></input>
+
+					<input type="text" name="last_name" placeholder="last name" class="contact_fields" required></input>
+
+					<input type="email" name="email" placeholder="email" class="contact_fields" required></input>
+
+					<textarea rows="10" placeholder="Your message goes here..." class="contact_fields"></textarea>
+
+					<input type="submit" value="SUBMIT" class="contact_submit"></input>
+
+				</form>
+
+			</section>
+
+			<div class="message_container">
+				<a href="#">
+			        <div class="message">
+			            <i class="fa fa-comments"></i>
+			        </div>       
+			    </a>
+
+			    <div class="message_hover">
+			    	Oops! Sorry, I'm unavailable at the moment. <br>
+			    	Check again soon cause I'm currently underconstruction.
+			    </div>
+			</div> 
+
+		</main>
+
+		</main>
+
+		<footer class="group">
+
+			<p>&copy; Copyright <a href="https://soc.uwl.ac.uk/~21326567">MENET CORP NETWORK.</a> 2013 - 2017</p>
+
+		    <!--a href="faq.php"><i class="fa fa-question-circle"></i></a>
+		    
+		    <div class="row">
+		        <div class="col col-xs-12 col-sm-3">
+		            <div class="footers">
+		                <h3 class="footer_headers">Header</h3>
+		                <ul>
+		                    <li><a href="faq.php">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                </ul>
+		            </div>
+		        </div>
+		        
+		        <div class="col col-xs-12 col-sm-3">
+		            <div class="footers">
+		                <h3 class="footer_headers">Header</h3>
+		                <ul>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                </ul>
+		            </div>
+		        </div>
+		        
+		        <div class="col col-xs-12 col-sm-3">
+		            <div class="footers">
+		                <h3 class="footer_headers">Header</h3>
+		                <ul>
+		                    <li><a href="faq.php">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                </ul>
+		            </div>
+		        </div>
+		        
+		        <div class="col col-xs-12 col-sm-3">
+		            <div class="footers">
+		                <h3 class="footer_headers">Header</h3>
+		                <ul>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                </ul>
+		            </div>
+		        </div>
+		    </div-->
+
+			<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+			<script src="../js/jquery.counterup.min.js"></script>
+
+		</footer>
+
+	</body>
+</html>
+
+
+
+

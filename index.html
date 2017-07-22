@@ -1,0 +1,259 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+
+	    <title>SHOP WITH ME - Home</title>
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>    
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	    <script type="text/javascript" src="assets/js/javascript.js"></script>
+	    <script>
+	        jQuery(document).ready(function( $ ) {
+	            $('.counter').counterUp({
+	                delay: 10,
+	                time: 1000
+	            });
+	            
+	            //Add or append the shopping cart icon to all products using jQuery
+	            jQuery(".item_info").append('<i class="fa fa-cart-plus" aria-hidden="true"></i>');
+	            
+	            //Hide the answers in the Frequently asked questions page.
+	            jQuery(".faqs_answers").hide();
+	            
+	            //Active the questions to be able to toggle the answers into view.
+	            jQuery(".faqs_questions").click(function() {
+	               jQuery(this).next(".faqs_answers").slideToggle(); 
+	            });
+	        });
+	    </script>
+	    
+	    <script type="text/javascript">
+	        
+	        var TxtType = function(el, toRotate, period) {
+	            this.toRotate = toRotate;
+	            this.el = el;
+	            this.loopNum = 0;
+	            this.period = parseInt(period, 10) || 2000;
+	            this.txt = '';
+	            this.tick();
+	            this.isDeleting = false;
+	        };
+
+	    TxtType.prototype.tick = function() {
+	        var i = this.loopNum % this.toRotate.length;
+	        var fullTxt = this.toRotate[i];
+
+	        if (this.isDeleting) {
+	            this.txt = fullTxt.substring(0, this.txt.length - 1);
+	        } 
+	        
+	        else {
+	            this.txt = fullTxt.substring(0, this.txt.length + 1);
+	        }
+
+	        this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+	        var that = this;
+	        var delta = 200 - Math.random() * 100;
+
+	        if (this.isDeleting) { delta /= 2; }
+
+	        if (!this.isDeleting && this.txt === fullTxt) {
+	            delta = this.period;
+	            this.isDeleting = true;
+	        }
+	        
+	        else if (this.isDeleting && this.txt === '') {
+	            this.isDeleting = false;
+	            this.loopNum++;
+	            delta = 500;
+	        }
+
+	        setTimeout(function() {
+	            that.tick();
+	        }, delta);
+	    };
+
+	    window.onload = function() {
+	        var elements = document.getElementsByClassName('typewrite');
+	        for (var i=0; i<elements.length; i++) {
+	            var toRotate = elements[i].getAttribute('data-type');
+	            var period = elements[i].getAttribute('data-period');
+	            if (toRotate) {
+	              new TxtType(elements[i], JSON.parse(toRotate), period);
+	            }
+	        }
+	        
+	        // INJECT CSS
+	        var css = document.createElement("style");
+	        css.type = "text/css";
+	        css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+	        document.body.appendChild(css);
+	    };
+	    </script>
+
+	</head>
+
+	<body>
+		
+		<header class="group">
+		    
+		    <a href="#" id="logo">shop with me</a>
+
+		    <div class="main_links">
+		        
+		    	<nav id="top_nav">
+		    		<ul>
+		    			<li><a href="assets/html/products.html">Products</a></li>
+		    			<li><a href="assets/html/about.html">About</a></li>
+		    			<li><a href="assets/html/contact.html">Contact</a></li>
+		    		</ul>
+		    	</nav>
+
+		        <div class="sign_up_log_in">
+				    <a href="assets/html/sign_links/sign_in.html" class="sign_links">Sign In</a> / 
+				    <a href="assets/html/sign_links/sign_up.html" class="sign_links">Sign Up</a>
+				</div>
+		        
+		        <a href="assets/html/cart.html" id="cart">
+		            <i class="fa fa-shopping-cart" style="font-size: 15px"><span class="total">0</span></i>
+		        </a>
+
+		    </div>
+
+		</header>
+
+		<main class="group">
+
+			<div class="index">
+				<div class="banner">
+				    <div class="banner_content">
+				        <h1>
+				            <span class="typewrite" data-period="2000" data-type='[ "Shop with me.", "An innovative platform.", "To find what you need.", "With easy quick payments.", "And a user-friendly design." ]'>
+				                <span class="wrap"></span>
+				            </span>
+				        </h1>
+				        <p>The best online shopping website. Give it a try.</p>
+				        <a href="assets/html/products.html" id="find">Products</a>
+				    </div>    
+				</div>
+
+				<div class="numbers group">
+				    <div class="numbers_items">
+				        <h2 class="numbers_totals"><span class="counter">12</span></h2>
+				        <p class="numbers_descriptions">types of products</p>
+				    </div>
+
+				    <div class="numbers_items">
+				        <h2 class="numbers_totals">
+				            <span>+</span><span class="counter">25,980</span></h2>
+				        <p class="numbers_descriptions">Active users</p>
+				    </div>
+
+				    <div class="numbers_items">
+				        <h2 class="numbers_totals">£<span class="counter">194,483</span></h2>
+				        <p class="numbers_descriptions">raised so far</p>
+				    </div>      
+				</div>
+
+				<!--div class="main_container">
+				    <h2>THIS IS THE INDEX.PAGE</h2>
+				    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis elit ut commodo egestas. Nunc consectetur nisl et tellus commodo feugiat. Nulla sed pulvinar neque. Etiam laoreet, quam sit amet faucibus lacinia, augue leo ultricies tortor, eu fermentum odio metus in sapien. Aliquam id nunc diam. Maecenas ut maximus lacus. Integer sollicitudin eu justo non placerat. Aenean finibus venenatis eleifend. Nulla eu ornare risus. Mauris at arcu mollis, efficitur mi sed, molestie elit. In hac habitasse platea dictumst. Fusce eget mauris nisl. Donec iaculis blandit sollicitudin. Aliquam erat volutpat. Aenean pellentesque mi vitae eleifend hendrerit.</p>
+
+				    <p>Nulla maximus massa mauris. In in nunc lectus. Nam neque lectus, consequat sit amet nisl eu, mollis tempus ante. Nullam dignissim massa sed gravida accumsan. Aenean ultrices a ligula at sagittis. Sed sit amet congue libero. Curabitur pellentesque congue velit, eu tristique dolor volutpat sed. Sed vitae tellus in arcu vehicula efficitur. In a leo vitae diam suscipit suscipit ac eu augue. Fusce consequat iaculis diam ac maximus. Proin tempus, lorem sed sodales auctor, magna augue hendrerit massa, consequat consectetur sapien urna eget mauris. Mauris vitae lobortis orci. Maecenas tempus ex eu vestibulum accumsan. Mauris diam elit, lobortis vel hendrerit at, fermentum sed nunc. Integer a metus ut eros commodo sagittis.</p>
+				</div>
+
+				<div class="parallax">
+				    <h1>COMPUTER TESTING</h1>
+				</div>
+
+				<div class="main_container">
+				    <p>Donec neque leo, rutrum et mollis a, feugiat id nunc. Etiam ut erat massa. Vivamus dolor arcu, efficitur et pretium non, sodales a neque. Aenean porttitor erat a suscipit pharetra. Proin fermentum fringilla eros. Vestibulum sit amet nisi sed lectus convallis ultricies nec ut sem. Vivamus porttitor, nulla eu ultrices interdum, purus purus luctus tortor, ac iaculis arcu metus nec libero. Maecenas est erat, commodo ac justo eget, pharetra pellentesque ipsum. Donec id velit tincidunt, tristique ex dignissim, vestibulum tellus. Integer eros nulla, laoreet id ante ac, pharetra tempus dolor. Vivamus ornare ultrices elit. Vivamus rhoncus nunc in scelerisque pharetra. Pellentesque in ipsum purus.</p>
+				    
+				    <p>Sed sollicitudin arcu quis arcu feugiat tincidunt. Fusce cursus purus aliquam nibh rhoncus bibendum. Vivamus dapibus, elit ac maximus facilisis, sem turpis tempus purus, ornare malesuada ligula dui sit amet risus. Mauris vestibulum metus pellentesque, auctor tortor et, lobortis quam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum id lacus ac ipsum scelerisque faucibus ac a sem. Suspendisse ut purus libero.</p>
+
+				    <p>Nulla laoreet massa tempus mattis suscipit. Donec quis nibh ut nulla mattis iaculis. Nulla facilisi. Vivamus non vehicula sem. In ultricies diam et odio tincidunt, vel tempus ante aliquet. Quisque id faucibus neque, vitae sodales magna. Ut tincidunt, turpis vel bibendum lobortis, urna justo dapibus erat, at accumsan leo libero a libero. Interdum et malesuada fames ac ante ipsum primis in faucibus. Duis at felis fermentum, commodo leo feugiat, pharetra nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus mollis ullamcorper odio, non hendrerit eros condimentum ut. Pellentesque porta turpis quam, vitae imperdiet dolor venenatis eu. Pellentesque consequat diam sit amet nulla mollis vestibulum. In ultrices nisl et magna posuere aliquet porta quis massa. Donec auctor ligula a eros consequat, eu bibendum ante vestibulum. Phasellus luctus consequat lectus.</p>
+				</div-->
+			</div>
+
+			<div class="message_container">
+				<a href="#">
+			        <div class="message">
+			            <i class="fa fa-comments"></i>
+			        </div>       
+			    </a>
+
+			    <div class="message_hover">
+			    	Oops! Sorry, I'm unavailable at the moment. <br>
+			    	Check again soon cause I'm currently underconstruction.
+			    </div>
+			</div>    
+		    
+		</main>
+
+		<footer class="group">
+
+			<p>&copy; Copyright <a href="https://soc.uwl.ac.uk/~21326567">MENET CORP NETWORK.</a> 2013 - 2017</p>
+
+		    <!--a href="faq.php"><i class="fa fa-question-circle"></i></a>
+		    
+		    <div class="row">
+		        <div class="col col-xs-12 col-sm-3">
+		            <div class="footers">
+		                <h3 class="footer_headers">Header</h3>
+		                <ul>
+		                    <li><a href="faq.php">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                </ul>
+		            </div>
+		        </div>
+		        
+		        <div class="col col-xs-12 col-sm-3">
+		            <div class="footers">
+		                <h3 class="footer_headers">Header</h3>
+		                <ul>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                </ul>
+		            </div>
+		        </div>
+		        
+		        <div class="col col-xs-12 col-sm-3">
+		            <div class="footers">
+		                <h3 class="footer_headers">Header</h3>
+		                <ul>
+		                    <li><a href="faq.php">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                </ul>
+		            </div>
+		        </div>
+		        
+		        <div class="col col-xs-12 col-sm-3">
+		            <div class="footers">
+		                <h3 class="footer_headers">Header</h3>
+		                <ul>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                    <li><a href="#">THIS IS IT</a></li>
+		                </ul>
+		            </div>
+		        </div>
+		    </div-->
+
+			<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+			<script src="assets/js/jquery.counterup.min.js"></script>
+
+		</footer>
+
+	</body>
+</html>
